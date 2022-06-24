@@ -1,11 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
 
 function App() {
   return (
-    <div className="App">
-      <p>hi</p>
-    </div>
+    <>
+      <div class="content">
+        <Header />
+      </div>
+
+      <div className="footer mt-3">
+        <Footer />
+      </div>
+    </>
   );
 }
 
