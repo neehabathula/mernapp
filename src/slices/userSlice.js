@@ -10,7 +10,7 @@ export const userLogin=createAsyncThunk('loginuser',async(userCredentialsObject,
       //store token in local storage
       localStorage.setItem("token",data.payload);
       return data.userObj;
-
+      
     }
     if(data.message==='Invalid user' || data.message==='Invalid password'){
       return thunkApi.rejectWithValue(data)

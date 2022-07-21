@@ -3,13 +3,13 @@ const exp = require("express");
 const app = exp();
 const mclient=require("mongodb").MongoClient;
 
-require('dotenv').config()
-
 //import path module
 const path=require('path');
 
 //connect build of react app with nodejs
 app.use(exp.static(path.join(__dirname,'./build')))
+
+require('dotenv').config()
 
 //DB connection URL
 const DBurl=process.env.DATABASE_CONNECTION_URL;
@@ -19,7 +19,7 @@ mclient.connect(DBurl)
 .then((client)=>{
 
   //get DB object
-  let dbObj=client.db("vnr2022db");
+  let dbObj=client.db("myFirstDatabase123");
 
   //create collection objects
   let userCollectionObject=dbObj.collection("usercollection");

@@ -1,11 +1,9 @@
-import { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap";
 import loginImg from "../images/login.svg";
-import { useSelector, useDispatch } from "react-redux";
-import { userLogin } from "../slices/userSlice";
-
-import { useNavigate } from "react-router-dom";
+import {useSelector,useDispatch} from 'react-redux';
+import {userLogin} from '../slices/userSlice'
 
 function Login() {
   const {
@@ -14,36 +12,13 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  //get user state from redux
-  let { userObj, isError, isLoading, isSuccess, errMsg } = useSelector(
-    (state) => state.user
-  );
 
-  //get dispathc function to call action creator functions
-  let dispatch = useDispatch();
+  let {userObj,isError,isLoading,isSuccess,errMsg}=useSelector(state=>state.user)
+  let dispath=useDispatch();
 
-  //get navigate functon to navigate programatically
-  let navigate = useNavigate();
-
-  //when login form is submitted
   const onFormSubmit = (userCredentialsObject) => {
-     // console.log(userCredentialsObject)
-    if (userCredentialsObject.userType === "user") {
-      dispatch(userLogin(userCredentialsObject));
-    }
-
-    if (userCredentialsObject.userType === "admin") {
-      alert("Admin devoloplment in progress...");
-      // dispatch(userLogin(userCredentialsObject));
-    }
+    dispath(userLogin(userCredentialsObject))
   };
-
-  //this to be executed when either isSuccess or isError changed
-  useEffect(() => {
-    if (isSuccess) {
-      navigate("/userdashboard");
-    }
-  }, [isSuccess, isError]);
 
   return (
     <div className="container">
@@ -57,27 +32,7 @@ function Login() {
       />
       <div className="row  ">
         <div className="col-12 col-sm-8 col-md-6  mx-auto">
-          <Form onSubmit={handleSubmit(onFormSubmit)}>
-            <Form.Group className="mb-3">
-              <Form.Label>Select type of User</Form.Label> <br />
-              {/* user type */}
-              <Form.Check inline type="radio" id="user">
-                <Form.Check.Input
-                  type="radio"
-                  value="user"
-                  {...register("userType", { required: true })}
-                />
-                <Form.Check.Label>User</Form.Check.Label>
-              </Form.Check>
-              <Form.Check inline type="radio" id="admin">
-                <Form.Check.Input
-                  type="radio"
-                  value="admin"
-                  {...register("userType", { required: true })}
-                />
-                <Form.Check.Label>Admin</Form.Check.Label>
-              </Form.Check>
-            </Form.Group>
+          <Form  onSubmit={handleSubmit(onFormSubmit)}>
             {/* username */}
             <Form.Group className="mb-3">
               <Form.Label>Username</Form.Label>

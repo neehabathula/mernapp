@@ -72,11 +72,7 @@ function Header() {
               ) : (
                 <>
                   {/* This dropdown is visible only when a user is logged in */}
-                  <NavDropdown
-                    title={userObj.username}
-                    id="collasible-nav-dropdown"
-                    id="drop-down"
-                  >
+                  <NavDropdown title={userObj.username}id="collasible-nav-dropdown drop-down">
                     <NavDropdown.Item>Change password</NavDropdown.Item>
 
                     <NavDropdown.Divider />

@@ -85,7 +85,12 @@ productApp.delete("/remove-product/:id",expressAsyncHandler(async(request,respon
 
   //get productCollectionObject
   let productCollectionObject = request.app.get("productCollectionObject");
-  //write logic to delete product by its id
+  //get id to be deleted
+  let delUserId=(+request.params.id)
+  //deletion
+  await productCollectionObject.deleteOne({productId:delUserId});
+  //send response
+  response.send({message:"deleted successfully"})
 }))
 
 
